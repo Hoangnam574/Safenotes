@@ -1,0 +1,101 @@
+name: safenotes
+description: Encrypted, private note manager
+homepage: https://safenotes.dev/
+documentation: https://safenotes.dev/
+publish_to: 'none'
+
+version: 2.3.0+10
+
+environment:
+  sdk: ">=3.0.0 <4.1.0"
+  flutter: ">=3.7.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_plugin_android_lifecycle: ^2.0.33
+  after_layout: ^1.2.0
+  auto_size_text: ^3.0.0
+  crypto: ^3.0.3
+  cupertino_icons: ^1.0.0
+  device_info_plus: ^12.3.0
+  easy_localization: ^3.0.1
+  encrypt: ^5.0.0
+  file_picker: ^10.3.8
+  flutter_secure_storage: ^10.0.0
+  flutter_staggered_grid_view: ^0.7.0
+  intl: ^0.20.2
+  local_auth: ^3.0.0
+  local_session_timeout: ^3.2.0
+  logger: ^2.1.0
+  material_design_icons_flutter: ^7.0.7296
+  media_scanner: ^2.1.0
+  modal_bottom_sheet: ^3.0.0
+  page_transition: ^2.0.9
+  path: ^1.9.0
+  path_provider: ^2.1.5
+  permission_handler: ^12.0.1
+  provider: ^6.0.3
+  rename: ^3.0.2
+  settings_ui: ^2.0.2
+  shared_preferences: ^2.5.4
+  sqflite: ^2.3.2
+  timeago: ^3.3.0
+  tuple: ^2.0.0
+  url_launcher: ^6.1.7
+  safenotes_nord_theme:
+    git:
+      url: https://github.com/keshav-space/safenotes-nord-theme.git
+      ref: main
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.2.11
+  import_sorter: ^4.6.0
+  dependency_validator: ^5.0.3
+  flutter_lints: ^6.0.0
+
+flutter_native_splash:
+  color: "#ECEFF4"
+  image: assets/images/splash_500.png
+  color_dark: "#2E3440"
+  image_dark: assets/images/splash_500.png
+  android_12:
+    color: "#ECEFF4"
+    icon_background_color: "#ECEFF4"
+    image: assets/images/splash_12.png
+    color_dark: "#2E3440"
+    icon_background_color_dark: "#2E3440"
+    image_dark: assets/images/splash_12.png
+  fullscreen: true
+
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 25
+  ios: true
+  remove_alpha_ios: true
+  image_path_ios: "assets/images/icon_no_alpha_ios.png"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+    - assets/translations/
+  fonts:
+    - family: NotoSerif
+      fonts:
+        - asset: assets/fonts/NotoSerif-Regular.ttf
+    - family: MerriweatherBlack
+      fonts:
+        - asset: assets/fonts/Merriweather-Black.ttf
+    - family: NotoMonochromaticEmoji
+      fonts:
+        - asset: assets/fonts/NotoEmoji-VariableFont_wght.ttf
+
+dependency_overrides:
+  win32: ^5.7.0

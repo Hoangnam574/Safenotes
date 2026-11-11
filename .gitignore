@@ -1,0 +1,71 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+.vscode/
+hs_err_pid*
+
+# Databases and local test data
+*.sqlite
+*.sqlite3
+*.db
+
+# IntelliJ / Android Studio related
+*.iml
+*.ipr
+*.iws
+.idea/
+**/.idea/
+
+# Gradle & Build Caches
+.gradle/
+**/.gradle/
+.kotlin/
+**/.kotlin/
+bin/
+build/
+**/build/
+
+# Android Local & Secrets
+**/local.properties
+**/key.properties
+*.keystore
+*.jks
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Local Development Files
+_local_temp/
+app_store_listing_assets/
+release_n_security_strategy.md
+/unused
+/releases
+remove.txt
+directives.txt
+working.txt

@@ -1,0 +1,177 @@
+
+import 'dart:async';
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:local_session_timeout/local_session_timeout.dart';
+
+// Project imports:
+import 'package:safenotes/app.dart';
+import 'package:safenotes/data/preference_and_config.dart';
+import 'package:safenotes/dialogs/generic.dart';
+import 'package:safenotes/dialogs/logout_alert.dart';
+import 'package:safenotes/models/editor_state.dart';
+import 'package:safenotes/models/session.dart';
+import 'package:safenotes/utils/lifecycle_handler.dart';
+import 'package:safenotes/utils/scheduled_task.dart';
+import 'package:safenotes/views/settings/backup_setting.dart';
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  WidgetsBinding.instance.addObserver(AppLifecycleEventHandler(
+    inactiveCallBack: ScheduledTask.backup,
+  ));
+
+  await PreferencesStorage.init();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+    if (PreferencesStorage.isAutoRotate) ...[
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]
+  ]);
+
+  onAppUpdate();
+
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+      path: 'assets/translations',
+      supportedLocales: SafeNotesConfig.localesValues,
+      fallbackLocale: const Locale('en', 'US'),
+      child: SafeNotesApp(),
+    ),
+  );
+}
+
+class SafeNotesApp extends StatelessWidget {
+  SafeNotesApp({Key? key}) : super(key: key);
+
+  final navigatorKey = GlobalKey<NavigatorState>();
+  NavigatorState? get _navigator => navigatorKey.currentState;
+  final sessionStateStream = StreamController<SessionState>();
+  final int foucsTimeout = PreferencesStorage.focusTimeout;
+  final int inactivityTimeout = PreferencesStorage.inactivityTimeout;
+
+  @override
+  Widget build(BuildContext context) {
+    final sessionConfig = SessionConfig(
+      invalidateSessionForAppLostFocus: Duration(seconds: foucsTimeout),
+      invalidateSessionForUserInactivity: Duration(seconds: inactivityTimeout),
+    );
+
+    sessionConfig.stream.listen(sessionHandler);
+    //  stop listening, as user will already be in auth page
+    sessionStateStream.add(SessionState.stopListening);
+
+    return SessionTimeoutManager(
+      sessionConfig: sessionConfig,
+      child: App(
+        sessionStateStream: sessionStateStream,
+        navigatorKey: navigatorKey,
+      ),
+    );
+  }
+
+  Future<void> sessionHandler(SessionTimeoutState timeoutEvent) async {
+    sessionStateStream.add(SessionState.stopListening);
+    BuildContext context = navigatorKey.currentContext!;
+
+    if (timeoutEvent == SessionTimeoutState.userInactivityTimeout &&
+        PreferencesStorage.isInactivityTimeoutOn) {
+      await onTimeOutDo(
+        context: context,
+        showPreLogoffAlert: true,
+      );
+      // Don't logout if user is active
+    } else if (timeoutEvent == SessionTimeoutState.appFocusTimeout) {
+      await onTimeOutDo(
+        context: context,
+        showPreLogoffAlert: false,
+      );
+    }
+  }
+
+  Future<void> onTimeOutDo(
+      {required BuildContext context, required bool showPreLogoffAlert}) async {
+    // execute only if user is already logged
+    // no need to logout and redirect to authwall if user is not loggedIN
+    if (PhraseHandler.getPass.isNotEmpty) {
+      bool? isUserActive;
+      if (showPreLogoffAlert) {
+        isUserActive = await preInactivityLogOffAlert(context);
+      }
+      if (isUserActive == null || showPreLogoffAlert == false) {
+        // isUserActive == null => show him logout Msg
+        // showPreLogoffAlert == false => i.e. triggered by appFocusTimeout
+
+        if (context.mounted) {
+          logout(
+            context: context,
+            showLogoutMsg: true,
+          );
+        }
+      }
+      if (isUserActive == false) {
+        // isUserActive == false => user choose to logout, don't show msg
+        if (context.mounted) {
+          logout(
+            context: context,
+            showLogoutMsg: false,
+          );
+        }
+      }
+      //else user pressed cancel and is active
+    }
+    // User is already on authpage
+  }
+
+  Future<void> logout({
+    required BuildContext context,
+    required bool showLogoutMsg,
+  }) async {
+    _navigator?.pushNamedAndRemoveUntil(
+      '/authwall',
+      (Route<dynamic> route) => false,
+      arguments: SessionArguments(
+        sessionStream: sessionStateStream,
+        isKeyboardFocused: false,
+      ),
+    );
+
+    if (showLogoutMsg) {
+      showGenericDialog(
+        context: context,
+        icon: Icons.info_outline,
+        message:
+            "You were logged out due to extended inactivity. This is to protect your privacy."
+                .tr(),
+      );
+    }
+
+    // save unsaved note if any
+    await NoteEditorState().handleUngracefulNoteExit();
+    await Session.logout();
+  }
+}
+
+// run once every update
+void onAppUpdate() async {
+  if (PreferencesStorage.appVersionCode != SafeNotesConfig.appVersionCode) {
+    if (PreferencesStorage.isBackupOn) {
+      if (await handleBackupPermissionAndLocation()) {
+        await ScheduledTask.backup();
+      }
+    }
+
+    // insure onAppUpdate is run once each update
+    PreferencesStorage.setAppVersionCodeToCurrent();
+  }
+}
