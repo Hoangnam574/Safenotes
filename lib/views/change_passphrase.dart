@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (C) hoangnam574 - All Rights Reserved.
 *
 * SPDX-License-Identifier: GPL-3.0-or-later
