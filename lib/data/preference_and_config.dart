@@ -1,5 +1,5 @@
-/*
-* Copyright (C) Keshav Priyadarshi and others - All Rights Reserved.
+﻿/*
+* Copyright (C) hoangnam574 - All Rights Reserved.
 *
 * SPDX-License-Identifier: GPL-3.0-or-later
 * You may use, distribute and modify this code under the
@@ -8,7 +8,7 @@
 * You should have received a copy of the GNU General Public License v3.0 with
 * this file. If not, please visit https://www.gnu.org/licenses/gpl-3.0.html
 *
-* See https://safenotes.dev for support or download.
+* See https://github.com/Hoangnam574/Safenotes for support or download.
 */
 
 // Flutter imports:
@@ -274,8 +274,8 @@ class SafeNotesConfig {
   static const String _exportFileNameExtension = '.json';
   static const String _backupExtension = '.json';
   static const String _backupFileNamePrefix = 'safenotes_backup';
-  static const String _githubUrl = 'https://github.com/keshav-space/safenotes';
-  static const String _faqsUrl = 'https://safenotes.dev/faqs.html';
+  static const String _githubUrl = 'https://github.com/Hoangnam574/Safenotes';
+  static const String _faqsUrl = 'https://github.com/Hoangnam574/Safenotes';
   static const String _iosBackupDirectoryIndicativePath =
       '/On My iPhone/Safe Notes/';
   static const String _androidDownloadDirectory =
@@ -283,15 +283,15 @@ class SafeNotesConfig {
   static const String _androidBackupDirectory =
       '/storage/emulated/0/Download/Safe Notes/';
   static const String _mailToForFeedback =
-      'mailto:contact@safenotes.dev?subject=Help and Feedback';
+      'mailto:lohoangnambkvn@gmail.com?subject=Help and Feedback';
   static const String _sourceCodeUrl =
-      'https://github.com/keshav-space/safenotes';
+      'https://github.com/Hoangnam574/Safenotes';
   static const String _bugReportUrl =
-      'mailto:contact@safenotes.dev?subject=Bug Report';
+      'mailto:lohoangnambkvn@gmail.com?subject=Bug Report';
   static const String _openSourceLicense =
-      'https://github.com/keshav-space/safenotes/blob/main/LICENSE';
+      'https://github.com/Hoangnam574/Safenotes/blob/main/LICENSE';
   static const String _playStorUrl =
-      'https://play.google.com/store/apps/details?id=com.trisven.safenotes';
+      'https://github.com/Hoangnam574/Safenotes';
 
   static final Map<String, Locale> _locales = {
     "Čeština": const Locale('cs'),

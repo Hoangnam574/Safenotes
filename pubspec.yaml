@@ -1,7 +1,7 @@
 name: safenotes
 description: Encrypted, private note manager
-homepage: https://safenotes.dev/
-documentation: https://safenotes.dev/
+homepage: https://github.com/Hoangnam574/Safenotes
+documentation: https://github.com/Hoangnam574/Safenotes
 publish_to: 'none'
 
 version: 2.3.0+10
@@ -44,10 +44,6 @@ dependencies:
   timeago: ^3.3.0
   tuple: ^2.0.0
   url_launcher: ^6.1.7
-  safenotes_nord_theme:
-    git:
-      url: https://github.com/keshav-space/safenotes-nord-theme.git
-      ref: main
 
 dev_dependencies:
   flutter_test:

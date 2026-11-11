@@ -1,5 +1,5 @@
-/*
-* Copyright (C) Keshav Priyadarshi and others - All Rights Reserved.
+﻿/*
+* Copyright (C) hoangnam574 - All Rights Reserved.
 *
 * SPDX-License-Identifier: GPL-3.0-or-later
 * You may use, distribute and modify this code under the
@@ -8,7 +8,7 @@
 * You should have received a copy of the GNU General Public License v3.0 with
 * this file. If not, please visit https://www.gnu.org/licenses/gpl-3.0.html
 *
-* See https://safenotes.dev for support or download.
+* See https://github.com/Hoangnam574/Safenotes for support or download.
 */
 
 // Dart imports:
@@ -22,7 +22,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:safenotes_nord_theme/safenotes_nord_theme.dart';
+import 'package:safenotes/nord_theme/safenotes_nord_theme.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -260,7 +260,7 @@ class BackupSettingState extends State<BackupSetting> {
     TODO: Support opening backup folder on Android native file manager
     As of now, there is no reliable way to open a particular folder in
     the file manager using the ACTION_VIEW intent.
-    See: ghttps://github.com/keshav-space/safenotes/issues/193
+    See: ghttps://github.com/Hoangnam574/Safenotes/issues/193
     */
     return Text(
       'Location: {locationPath}'.tr(

@@ -1,5 +1,5 @@
-/*
-* Copyright (C) Keshav Priyadarshi and others - All Rights Reserved.
+﻿/*
+* Copyright (C) hoangnam574 - All Rights Reserved.
 *
 * SPDX-License-Identifier: GPL-3.0-or-later
 * You may use, distribute and modify this code under the
@@ -8,7 +8,7 @@
 * You should have received a copy of the GNU General Public License v3.0 with
 * this file. If not, please visit https://www.gnu.org/licenses/gpl-3.0.html
 *
-* See https://safenotes.dev for support or download.
+* See https://github.com/Hoangnam574/Safenotes for support or download.
 */
 
 // Flutter imports:

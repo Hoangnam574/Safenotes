@@ -1,4 +1,4 @@
-# SafeNotes
+﻿# SafeNotes
 
 SafeNotes is a private, client-side encrypted note-taking application developed with Flutter. Designed with an offline-first architecture, it ensures that personal notes, credentials, and sensitive thoughts remain strictly confidential and protected on the local device.
 
@@ -158,4 +158,4 @@ safenotes/
 
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0-or-later). See the LICENSE file for details.
 
-Original work Copyright (C) Keshav Priyadarshi and contributors.
+Copyright (C) hoangnam574.

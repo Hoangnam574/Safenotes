@@ -1,5 +1,5 @@
-/*
-* Copyright (C) Keshav Priyadarshi and others - All Rights Reserved.
+﻿/*
+* Copyright (C) hoangnam574 - All Rights Reserved.
 *
 * SPDX-License-Identifier: GPL-3.0-or-later
 * You may use, distribute and modify this code under the
@@ -8,15 +8,15 @@
 * You should have received a copy of the GNU General Public License v3.0 with
 * this file. If not, please visit https://www.gnu.org/licenses/gpl-3.0.html
 *
-* See https://safenotes.dev for support or download.
+* See https://github.com/Hoangnam574/Safenotes for support or download.
 */
 
 /*  
-Cloudflare Worker: "latest.safenotes.dev.worker"
+Cloudflare Worker: "latest.github.com/Hoangnam574/Safenotes.worker"
   Provides persistent URL for latest APK.
     URLS
-      - https://safenotes.dev/download
-      - https://latest.safenotes.dev/
+      - https://github.com/Hoangnam574/Safenotes/download
+      - https://latest.github.com/Hoangnam574/Safenotes/
 */
 
 export default {
@@ -28,10 +28,10 @@ export default {
 const statusCode = 301;
 async function handleRequest(request) {
   // Get the latest version from pubspec.yaml
-  let pubspecYAML = await fetch('https://raw.githubusercontent.com/keshav-space/safenotes/main/pubspec.yaml');
+  let pubspecYAML = await fetch('https://raw.githubusercontent.com/Hoangnam574/Safenotes/main/pubspec.yaml');
   let text = await pubspecYAML.text();
   let pattern = /version:\s.+\+(\d+)/g;
   let version = text.match(pattern)[0].split("version:").at(-1).split('+')[0].replaceAll(' ', '');
-  let downloadURL = `https://github.com/keshav-space/safenotes/releases/download/v${version}/safenotes-${version}-all.apk`;
+  let downloadURL = `https://github.com/Hoangnam574/Safenotes/releases/download/v${version}/safenotes-${version}-all.apk`;
   return Response.redirect(downloadURL, statusCode);
 }

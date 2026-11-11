@@ -4,7 +4,7 @@ Safe Notes contribution guidelines
 
 ## Issue reporting/feature requests
 
-* **Already reported**? Browse the [existing issues](https://github.com/keshav-space/safe_notes/issues) to make sure your issue/feature hasn't been reported/requested.
+* **Already reported**? Browse the [existing issues](https://github.com/Hoangnam574/Safenotes/issues) to make sure your issue/feature hasn't been reported/requested.
 * **Already fixed**? Check whether your issue/feature is already fixed/implemented.
 * **Still relevant**? Check if the issue still exists in the latest release/beta version.
 * **Can you fix it**? If you are an Android/Java/Flutter developer, you are always welcome to fix an issue or implement a feature yourself. PRs welcome! See [Code contribution](#code-contribution) for more info.
@@ -40,6 +40,6 @@ Safe Notes contribution guidelines
 
 ## Communication
 
-* Connect to us on GitHub [Discussion](https://github.com/keshav-space/safenotes/discussions) **(preferred)**
+* Connect to us on GitHub [Discussion](https://github.com/Hoangnam574/Safenotes/discussions) **(preferred)**
 * The #safenotes channel on [Matrix Chat](https://matrix.to/#/#safenotes:matrix.org) has the core team and other developers in it.
 * You can post your suggestions, changes, ideas etc. on either `GitHub` or `Matrix`.
